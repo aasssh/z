@@ -1,0 +1,112 @@
+1)
+
+import java.util.*;
+class Sphere
+{
+ public static void main (String[] args)
+ {
+ Scanner sc=new Scanner(System.in);
+ System.out.println("Enter the radius of the sphere: ");
+ double radius=sc.nextDouble();
+ double surface_area = (4*3.14*(radius*radius));
+ double volume = ((double)4/3)*3.14*(radius*radius*radius);
+ System.out.println("The surface area of the sphere = "+surface_area);
+ System.out.println("The volume of sphere = "+volume);
+ }
+}
+
+
+2)
+
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import javax.swing.event.*;
+class MouseDemo extends Jframe
+{
+  JTextField t1;
+  public MouseDemo()
+  {
+   setLayout(null);
+   t1=new JTextField();
+   t1.setBounds(100,100,200,50);
+   add(t1);
+   setSize(400,400);
+   setVisible(true);
+   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   setTitle("Mouse Demo");
+   addMouseListener(new MouseAdapter()
+   {
+     public void mouseClocked(MouseEvent me)
+     {
+       t1.setText("X Value:"+me.getX()+" Y Value:"+me.getY());
+     }
+   });
+   public static void main(String args[])
+   {
+    new MouseDemo();
+   }
+ }
+}
+
+
+
+OR
+
+
+
+import java.awt.*;
+import java.awt.event.*;
+class MyFrame extends Frame
+{
+ TextField t,t1;
+ Label l,l1;
+ int x,y;
+ Panel p;
+ MyFrame(String title)
+ {
+ super(title);
+ setLayout(new FlowLayout());
+ p=new Panel();
+ p.setLayout(new GridLayout(2,2,5,5));
+ t=new TextField(20);
+ l= new Label("Co-ordinates of mouse clicking");
+ l1= new Label("Co-ordinates of mouse movement");
+ t1=new TextField(20);
+ p.add(l);
+ p.add(t);
+ p.add(l1);
+ p.add(t1);
+add(p);
+ addMouseListener(new MyClick());
+ addMouseMotionListener(new MyMove());
+ setSize(500,500);
+ setVisible(true);
+ }
+ class MyClick extends MouseAdapter
+ {
+ public void mouseClicked(MouseEvent me)
+ {
+ x=me.getX();
+ y=me.getY();
+ t.setText("X="+x+" Y="+y);
+ }
+ }
+ class MyMove extends MouseMotionAdapter
+ {
+ public void mouseMoved(MouseEvent me)
+ {
+ x=me.getX();
+ y=me.getY();
+ t1.setText("X="+ x +" Y="+y);
+ }
+ }
+}
+class frame1
+{
+ public static void main(String args[])
+ {
+ MyFrame f = new MyFrame("Set A-2");
+ }
+} 

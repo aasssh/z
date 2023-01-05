@@ -1,0 +1,98 @@
+1)
+
+import java.io.*;
+public class FileCopier {
+ public static void main(String[] args) {
+ BufferedReader reader = new BufferedReader(new
+InputStreamReader(System.in));
+ try {
+ System.out.print("Enter the name of the first file: ");
+ String firstFileName = reader.readLine();
+ System.out.print("Enter the name of the second file: ");
+ String secondFileName = reader.readLine();
+ FileReader firstFileReader = new FileReader(firstFileName);
+ BufferedReader firstBufferedReader = new
+BufferedReader(firstFileReader);
+ FileWriter secondFileWriter = new FileWriter(secondFileName);
+ BufferedWriter secondBufferedWriter = new
+BufferedWriter(secondFileWriter);
+ String line;
+ while ((line = firstBufferedReader.readLine()) != null) {
+ secondBufferedWriter.write(line);
+ secondBufferedWriter.newLine();
+ }
+ firstBufferedReader.close();
+ secondBufferedWriter.close();
+ System.out.println("File copy completed successfully.");
+ } catch (IOException e) {
+ System.out.println("An error occurred: " + e.getMessage());
+ }
+ }
+}
+
+
+2)
+
+class Account {
+ String custname;
+ int accno;
+ // Default constructor
+ Account() {
+ custname = "";
+ accno = 0;
+ }
+ // Parameterized constructor
+ Account(String name, int number) {
+ custname = name;
+ accno = number;
+ }
+}
+class SavingAccount extends Account {
+ double savingbal;
+ double minbal;
+ // Default constructor
+ SavingAccount() {
+ savingbal = 0.0;
+ minbal = 0.0;
+ }
+ // Parameterized constructor
+ SavingAccount(String name, int number, double balance, double minimum) {
+ super(name, number);
+ savingbal = balance;
+ minbal = minimum;
+ }
+}
+class AccountDetail extends SavingAccount {
+ double depositamt;
+ double withdrawalamt;
+ // Default constructor
+ AccountDetail() {
+ depositamt = 0.0;
+ withdrawalamt = 0.0;
+ }
+ // Parameterized constructor
+ AccountDetail(String name, int number, double balance, double minimum,
+double deposit, double withdrawal) {
+ super(name, number, balance, minimum);
+ depositamt = deposit;
+ withdrawalamt = withdrawal;
+ }
+ // Method to display customer details
+ void displayCustomerDetails() {
+ System.out.println("Customer name: " + custname);
+ System.out.println("Account number: " + accno);
+ System.out.println("Saving balance: " + savingbal);
+ System.out.println("Minimum balance: " + minbal);
+ System.out.println("Deposit amount: " + depositamt);
+ System.out.println("Withdrawal amount: " + withdrawalamt);
+ }
+}
+public class Main {
+ public static void main(String[] args) {
+ // Create an object of the AccountDetail class
+ AccountDetail customer = new AccountDetail("John Doe", 123456, 1000.0,
+500.0, 200.0, 100.0);
+ // Call the displayCustomerDetails() method on the object
+ customer.displayCustomerDetails();
+ }
+}

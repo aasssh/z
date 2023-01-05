@@ -1,0 +1,169 @@
+1)
+
+import java.util.Scanner;
+public class Main {
+ static class NumberIsZeroException extends Exception {
+ public NumberIsZeroException(String message) {
+ super(message);
+ }
+ }
+ public static boolean isPrime(int number) {
+ if (number < 2) {
+ return false;
+ }
+ for (int i = 2; i <= Math.sqrt(number); i++) {
+ if (number % i == 0) {
+ return false;
+ }
+ }
+ return true;
+ }
+ public static void main(String[] args) {
+ Scanner scanner = new Scanner(System.in);
+ System.out.print("Enter a number: ");
+ int number = scanner.nextInt();
+ try {
+ if (number == 0) {
+ throw new NumberIsZeroException("Number is 0");
+ }
+ if (isPrime(number)) {
+ System.out.println(number + " is a prime number.");
+ } else {
+ System.out.println(number + " is not a prime number.");
+ }
+ } catch (NumberIsZeroException e) {
+ System.out.println(e.getMessage());
+ }
+ }
+}
+
+2)
+
+mkdir SY
+cd SY
+vim SYM.java
+
+package SY;
+public class SYM
+{
+ int ct,mt,et,tot;
+ public void disp(int CT, int MT, int ET)
+ {
+  this.ct=ct;
+  this.et=et;
+  this.mt=mt;
+ }
+ public int cal()
+ {
+  tot=ct+et+mt;
+  return tot;
+ }
+}
+
+cd ..
+mkdir TY
+cd TY
+vim TYM.java
+
+package TY;
+public class TYM
+{
+ int tm,pm,tot;
+ public TYM(int tm,int pm)
+ {
+  this.tm=tm;
+  this.pm=pm;
+ }
+ public int cal()
+ {
+  tot=tm+pm;
+  return tot;
+ }
+}
+
+cd ..
+mkdir avantika
+cd avantika
+vim AssPack.java
+
+import SY.SYM;
+import TY.TYM;
+import java.util.*;
+class Stud
+{
+ int rno,stot,ttot,tot;
+ String sname;
+ SYM sobj=null;
+ TYM tobj=null;
+ Stud(int r,String sn,int ct,int et, int mt,int tm, int pm)
+ {
+  rno=r;
+  sname=sn;
+  sobj=new SYM(ct,et,mt);
+  tobj=new TYM(tm,pm);
+ }
+ void cal()
+ {
+  stot=sobj.cal();
+  ttot=tobj.cal();
+  tot=stot=ttot;
+  per=tot/5;
+ }
+ void disp()
+ {
+  System.out.println(rno+""+sname+""+per);
+ }
+}
+class AssPack
+{
+ public static void main(String args[])
+ {
+  int i,n,ct,mt,et,tm,pm,r;
+  String sn;
+  Scanner sc=new Scanner(System.in);
+  System.out.println("How Many?");
+  n=sc.nextInt();
+  Stud obj[]=new Stud[n];
+  for(i=0;i<n;i++)
+  {
+   System.out.println("RNo. Name Per CT ET MT TM PM");
+   r=sc.nextInt();
+   sn=sc.next();
+   ct=sc.nextInt();
+   et=sc.nextInt();
+   mt=sc.nextInt();
+   tm=sc.nextInt();
+   pm=sc.nextInt();
+   obj[i]=new Stud(r,sn,ct,et,mt,tm,pm);
+   obj[i].cal();
+  }
+  for(i=0;i<n;i++)
+  {
+   if(obj[i].per>=70)
+   {
+    obj[i].disp();
+    System.out.println("Distinction");
+   }
+   else if(obj[i].per>=60 && obj[i].per<70)
+   {
+    obj[i].disp();
+    System.out.println("First Class");
+   }
+   else if(obj[i].per>=50 && obj[i].per<60)
+   {
+    obj[i].disp();
+    System.out.println("Second Class");
+   }
+   else if(obj[i].per>=40 && obj[i].per<50)
+   {
+    obj[i].disp();
+    System.out.println("Pass Class");
+   }
+   else
+   {
+    obj[i].disp();
+    System.out.println("Fail");
+   }
+  }
+ }
+}

@@ -1,0 +1,195 @@
+1)
+
+Slip5_2: Write a menu driven program to perform the following operations on
+multidimensional array ie matrices :  Addition
+ Multiplication
+import java.util.*;
+class Matrix
+{
+ Scanner sc = new Scanner(System.in);
+ int a = sc.nextInt();
+ int b = sc.nextInt();
+ int M[][] = new int[a][b];
+ void accept()
+ { 
+int a = this.a;
+ int b = this.b;
+ System.out.println("enter the "+(a*b)+ " values to matrix:");
+ for(int i=0;i<a;i++)
+ {
+ for(int j=0;j<b;j++)
+ {
+ this.M[i][j] = sc.nextInt();
+ }
+
+ }
+ }
+ void display()
+ {
+ for(int i =0;i<a;i++)
+ {
+ for(int j =0;j<b;j++)
+ {
+ System.out.print(" "+this.M[i][j]);
+ }
+ System.out.println(" ");
+ }
+ }
+ public static void main(String a[])
+ {
+ System.out.println("enter size 2*2 or 3*3 or ...");
+ Matrix m1 = new Matrix();
+ m1.accept();
+ System.out.println("values to matrix 1:");
+ m1.display();
+ System.out.println("enter the size:");
+ Matrix m2 = new Matrix();
+ m2.accept();
+ System.out.println("values to matrix 2:");
+ m2.display();
+
+ int choice;
+ Scanner scanner = new Scanner(System.in);
+ while(true) {
+ System.out.println("Press 1: Addition, 2: Multiplication, 3: Exit");
+ choice = scanner.nextInt();
+ switch (choice) {
+ case 1:
+ System.out.println("Addition is:" );
+ for(int i=0;i<m1.a;i++)
+ {
+ for(int j=0;j<m1.b;j++)
+ {
+ System.out.print(" "+ (m1.M[i][j]+m2.M[i][j])); 
+}
+ System.out.println(" ");
+ }
+ break;
+ case 2:
+ System.out.println("Multiplication is:");
+ for(int i=0;i<m2.a;i++)
+ {
+ for(int j=0;j<m2.b;j++)
+ {
+ System.out.print(" "+
+(m1.M[i][j]*m2.M[i][j]));
+ }
+ System.out.println(" ");
+ }
+ break;
+
+ case 3:
+ System.exit(0);
+ }
+ }
+ }
+}
+
+
+
+2)
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Matrix 
+{
+  public static void main(String[] args) 
+  {
+    Scanner scan = new Scanner(System.in);
+    int a[][] = { { 5, 6, 7 }, { 8, 9, 10 }, { 3, 1, 2 } };
+    int b[][] = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+    int c[][] = new int[3][3];
+    System.out.println("A = " + Arrays.deepToString(a));
+    System.out.println("B = " + Arrays.deepToString(b));
+    int choice;
+    do 
+    {
+      System.out.println("\nChoose the matrix operation,");
+      System.out.println("----------------------------");
+      System.out.println("1. Addition");
+      System.out.println("2. Multiplication");
+      System.out.println("3. Exit");
+      System.out.println("----------------------------");
+      System.out.print("Enter your choice: ");
+      choice = scan.nextInt();
+
+      switch (choice) 
+      {
+          case 1:
+          c = add(a, b);
+          System.out.println("Sum of matrix: ");
+          System.out.println(Arrays.deepToString(c));
+          break;
+          
+           case 2:
+           c = multiply(a, b);
+           System.out.println("Multiplication of matrix: ");
+           System.out.println(Arrays.deepToString(c));
+           
+          break;
+      
+          case 3:
+          System.out.println("Thank You.");
+          return;
+      
+          default:
+          System.out.println("Invalid input.");
+          System.out.println("Please enter the correct input.");
+       }
+    }
+    while (true);
+  }
+  public static int[][] add(int[][] a, int[][] b) 
+  {
+
+    // calculate row and column size of anyone matrix
+    int row = a.length;
+    int column = a[0].length;
+
+    // declare a matrix to store resultant value
+    int sum[][] = new int[row][column];
+
+    // calculate sum of two matrices
+    for (int i = 0; i < row; i++) 
+    {
+      for (int j = 0; j < column; j++)
+      {
+        sum[i][j] = a[i][j] + b[i][j];
+      }
+    }
+
+    // return resultant matrix
+    return sum;
+  }
+  public static int[][] multiply(int[][] a, int[][] b) 
+  {
+
+    // find row size of first matrix
+    int row = a.length;
+    // find column size of second matrix
+    int column = b[0].length;
+
+    // declare new matrix to store result
+    int product[][] = new int[row][column];
+
+    // find product of both matrices
+    // outer loop up to row of A
+    for (int i = 0; i < row; i++) 
+    {
+      // inner-1 loop utp0 column of B
+      for (int j = 0; j < column; j++) 
+      {
+        // assign 0 to the current element
+        product[i][j] = 0;
+
+        // inner-2 loop up to A[0].length
+        for (int k = 0; k < a[0].length; k++) 
+        {
+          product[i][j] += a[i][k] * b[k][j];
+        }
+      }
+    }
+    return product;
+  }
+}

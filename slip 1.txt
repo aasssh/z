@@ -1,0 +1,83 @@
+1)
+
+import java.util.*;
+class arrprime
+{
+    public static void main(String args[])
+    {
+        int i,n,m,k=0,j;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("How many?");
+        n=sc.nextInt();
+        int a[]=new int[n];
+        for(i=0;i<n;i++)
+        {
+            System.out.println("Enter a number:");
+            m=sc.nextInt();
+            for(j=2;j<m;j++)
+            {
+                if(m%j==0)
+                break;
+            }
+            if(m==j)
+            {
+                a[k]=m;
+                k++;
+            }
+        }
+        System.out.println("Prime numbers from array: ");
+        for(i=0;i<k;i++)
+        {
+            System.out.println(a[i]);
+        }
+    }
+}
+
+
+
+2)
+
+import java.util.*;
+abstract class Staff
+{
+    abstract void disp();
+    protected int id;
+    protected String name;
+}
+class OS extends Staff
+{
+    String dname;
+    OS(int no,  String sn, String dn)
+    {
+        id=no;
+        name=sn;
+        dname=dn;
+    }
+    void disp()
+    {System.out.println(id+" "+name+" "+dname);
+    }
+}
+class AssAbs
+{
+    public static void main(String args[])
+    {
+        int i,n,id;
+        String sn,dn;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("How many?");
+        n=sc.nextInt();
+        OS obj[]=new OS[n];
+        for(i=0;i<n;i++)
+        {
+            System.out.println("ID, Name and DName");
+            id=sc.nextInt();
+            sn=sc.next();
+            dn=sc.next();
+            obj[i]=new OS(id,sn,dn);
+        }
+        for(i=0;i<n;i++)
+        {
+            obj[i].disp();
+        }
+    }
+}
